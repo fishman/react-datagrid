@@ -129,13 +129,17 @@ module.exports = React.createClass({
     getDefaultProps: require('./getDefaultProps'),
 
     componentDidMount: function(){
-        window.addEventListener('click', this.windowClickListener = this.onWindowClick)
-        // this.checkRowHeight(this.props)
+        if(typeof window!=='undefined'){
+            window.addEventListener('click', this.windowClickListener = this.onWindowClick)
+            // this.checkRowHeight(this.props)
+        }
     },
 
     componentWillUnmount: function(){
         this.scroller = null
-        window.removeEventListener('click', this.windowClickListener)
+        if(typeof window!=='undefined'){
+            window.removeEventListener('click', this.windowClickListener)
+        }
     },
 
     // checkRowHeight: function(props) {
